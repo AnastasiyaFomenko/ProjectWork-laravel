@@ -1,0 +1,387 @@
+/* Margin */
+
+.margin-top-100 {
+    margin-top: 100px;
+}
+
+.margin-top-50{
+  margin-top: 50px;
+}
+
+.margin-top-20{
+    margin-top: 20px;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+/* Padding */
+
+.padding-top-10 {
+    padding-top: 10px;
+}
+
+.padding-20 {
+  padding: 20px
+}
+
+
+/* Font-size */
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.font-size-20 {
+    font-size: 20px;
+}
+@media (max-width: 990px)
+{
+.font-size-little {
+  font-size: 10px;
+}
+}
+
+/* Align */
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+
+
+
+/* Background */
+
+.background-lilac-100{
+    background-color: rgb(206, 205, 255);
+    padding: 30px;
+}
+
+.background-lilac-52{
+    background-color: rgba(206, 205, 255, 52%);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+
+/* Form */
+
+@media (max-width: 990px)
+{
+    input[type = text], [type = password],[type = submit], select, button, textarea
+    {
+        width: 100%;
+        padding: 6px;
+        border: 2px solid  rgb(206, 205, 255);
+        border-radius: 4px;
+        resize: vertical;
+        background-color: white;
+    } 
+}
+
+@media (min-width: 991px)
+{
+    input[type = text], [type = password],[type = submit], select, button,textarea
+    {
+        width: 50%;
+        padding: 6px;
+        border: 2px solid  rgb(206, 205, 255);
+        border-radius: 4px;
+        resize: vertical;
+        background-color: white;
+    } 
+}
+
+textarea {
+    width: 100%;
+    padding: 6px;
+    border: 2px solid  rgb(206, 205, 255);
+    border-radius: 4px;
+    resize: vertical;
+    background-color: white;
+    height: 250px;
+}
+
+/* a */
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+/* image */ 
+
+.img-100 {
+  width: 100%;
+  height: auto;
+}
+
+.img-50 {
+    width: 50%;
+    height: auto;
+}
+
+
+/* cards */
+:root {
+    --surface-color: rgb(206, 205, 255);
+  }
+  
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    gap: 2rem;
+    margin: 2rem 2rem 2rem 2rem;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .card {
+    position: relative;
+    display: block;
+    height: auto;  
+    overflow: hidden;
+    text-decoration: none;    
+  }
+  
+  .card__image {      
+    width: 100%;
+    height: auto;
+  }
+  
+  .card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;      
+    border-radius: 40px 0px 0px 0px;    
+    background-color: var(--surface-color);      
+    transform: translateY(100%);
+    transition: .2s ease-in-out;
+  }
+  
+  .card:hover .card__overlay {
+    transform: translateY(0);
+  }
+  
+  .card__arc {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;      
+    z-index: 1;
+  }
+  
+  .card__arc path {
+    fill: var(--surface-color);
+    d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+  }       
+  
+  .card:hover .card__header {
+    transform: translateY(0);
+  }
+  
+  .card__description {
+    padding: 0 2em 0;
+    margin: 0;
+    color: black;
+    font-family: "MockFlowFont";   
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .horizontal-card-text {
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    padding: 30px;
+    height: 100%;
+    float: right;
+    width: 50%;
+  }
+    
+  .horizontal-card-image {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    float: left;
+    max-width: 45%;
+    display: inline-block;
+  }
+
+  @media screen and (min-width: 900px){
+    .horizontal-card-body
+    {
+      display: flex;
+      height: auto;
+      overflow: hidden;
+    }
+  
+    .horizontal-card-image {
+      height: auto;
+      flex: 1;
+    }
+  
+    .horizontal-card-text{
+      flex: 2;
+      flex-direction: column;
+      text-align: left;
+    }
+  }
+  
+
+  /* Image */
+
+  .circle-image {
+    border-radius: 100%;
+    border: 2px solid rgb(206, 205, 255);
+  }
+
+  .little-image {
+    max-width: 50%;
+  }
+
+
+
+  /*навигационное меню*/
+.navbar {
+    padding: 0 2rem;
+    display: flex;
+    position: relative;
+    align-items: center;
+    color: #555555;
+    background-color: rgb(206, 205, 255);
+}
+
+.navbar-links {
+    height: 100%;
+}
+
+.navbar-links ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    display: block;
+    text-decoration: none;
+    color: #555555;
+    padding: 1rem;
+}
+
+.navbar-links li:hover {
+    background-color: rgb(206, 205, 255);;
+}
+ul .ul {
+  list-style: none; 
+  margin: 0;
+  padding: 0;
+}
+.fa {
+  padding-left: 10px;
+}
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.topmenu > li {
+  display: inline-block;
+  padding-right: 10px;
+  position: relative;
+}
+.topmenu > li:last-child {
+  margin-right: 0;
+}
+
+.one .submenu {
+  display: none;
+  background: rgb(206, 205, 255);;
+}
+.one ul li:hover .submenu {
+  display: block;
+}
+/*  кнопка гамбургер меню */
+.toggle-button {
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+
+}
+
+/* отдельные линии кнопки*/
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #555555;
+    border-radius: 10px;
+}
+
+/*для устройств с размером экрана меньше 624px отображаем гамбургер меню
+ */
+@media screen and (max-width: 1200px)
+{
+    .navbar {
+        padding: 0 .1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        background-color: rgb(206, 205, 255);
+
+    }
+
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%;
+    }
+
+    .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links ul li {
+        text-align: center;
+    }
+
+    .navbar-links ul li a {
+        padding: .5rem 1rem;
+    }
+
+    .navbar-links.active {
+        display: flex;
+        background-color:rgb(206, 205, 255);
+    }
+}
