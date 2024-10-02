@@ -35,7 +35,7 @@
                             <input type="file" class="margin-top-20" name="cover"
                                 class=" @error('cover') is-invalid @enderror" id="cover"><br>
                             <input type="submit" value="Добавить" class="margin-top-20">
-                            <input type = "hidden" name="user_id" id="user_id" value="2">
+                            <input type = "hidden" name="user_id" id="user_id" value="1">
                         </div>
                     </form>
                     <div class="right"><a href="{{ route('posts.index') }}">Назад</a></div>
