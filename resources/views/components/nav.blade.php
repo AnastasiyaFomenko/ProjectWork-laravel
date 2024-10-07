@@ -15,11 +15,19 @@
 <!-- ссылки навигации по сайту  -->
 <div class="navbar-links one">
     <ul class="topmenu ul">
-        <li><a href="/register">Регистрация</a></li>
-        <li><a href="/cabinet">Личный кабинет</a></li>
-        <li><a href="/about">О нас</a></li>
+    <li><a href="/about">О нас</a></li>
         <li><a href="/name_books">Название литературы</a></li>
         <li><a href="/posts">Посты</a></li>
+        @if (Route::has('login'))
+            @auth
+                <li><a href="{{ url('/dashboard') }}">Профиль</a></li>
+            @else
+            <li><a href="{{ route('login') }}">Авторизация</a></li>
+                @if (Route::has('register'))
+                <li><a href="{{ route('register') }}"> Регистрация</a></li>
+                @endif
+            @endauth
+        @endif
     </ul>
 </div>
 
