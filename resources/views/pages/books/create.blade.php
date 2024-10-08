@@ -1,0 +1,79 @@
+@extends('layouts.app')
+@section('title')
+Предложить статью
+@endsection
+@section('content')
+<main>
+    <div class="margin-top-50"></div>
+    <div class="container">
+        <div class="row">
+            <h3 class="center">Предложить статью</h3>
+        </div>
+        <div class="row">
+            <div class="col-2 col-md-3"></div>
+            <div class="col-8 col-md-6 background-lilac-52">
+                <div class="center">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                            <x-input-label for="name_id" :value="__('Id названия')" />
+                            <x-text-input id="name_id" type="text" name="name_id" required autofocus />
+                            <x-input-error :messages="$errors->get('name_id')" />
+
+                            <x-input-label for="age_limit_id" :value="__('Id возрастного ограничения')" />
+                            <x-text-input id="age_limit_id" type="text" name="age_limit_id" required  />
+                            <x-input-error :messages="$errors->get('age_limit_id')" />
+
+                            <x-input-label for="annotation_id" :value="__('Id аннотация')" />
+                            <x-text-input id="annotation_id" type="text" name="annotation_id" required />
+                            <x-input-error :messages="$errors->get('annotation_id')" />
+
+                            <x-input-label for="year_id" :value="__('Id года выпуска')" />
+                            <x-text-input id="year_id" type="text" name="year_id" required />
+                            <x-input-error :messages="$errors->get('year_id')" />
+
+                            <x-input-label for="house_id" :value="__('Id издания')" />
+                            <x-text-input id="house_id" type="text" name="house_id" required />
+                            <x-input-error :messages="$errors->get('house_id')" />
+
+                            <x-input-label for="language_id" :value="__('Id языка книги')" />
+                            <x-text-input id="language_id" type="text" name="language_id" required />
+                            <x-input-error :messages="$errors->get('language_id')" />
+
+                            <x-input-label for="annotation_id" :value="__('Id аннотацияя')" />
+                            <x-text-input id="annotation_id" type="text" name="annotation_id" required />
+                            <x-input-error :messages="$errors->get('annotation_id')" />
+
+                            <x-input-label for="binding_id" :value="__('Id обложки')" />
+                            <x-text-input id="binding_id" type="text" name="binding_id" required />
+                            <x-input-error :messages="$errors->get('binding_id')" />
+
+                            <x-input-label for="type_id" :value="__('Id типа литературы')" />
+                            <x-text-input id="type_id" type="text" name="type_id" required />
+                            <x-input-error :messages="$errors->get('type_id')" />
+
+                            <x-input-label for="ISBN" :value="__('ISBN')" />
+                            <x-text-input id="ISBN" type="text" name="ISBN" required />
+                            <x-input-error :messages="$errors->get('ISBN')" />
+
+                            <x-primary-button>
+                                {{ __('Добавить книгу') }}
+                            </x-primary-button>
+                    </form>
+                    <div class="right"><a href="{{ route('books.index') }}">Назад</a></div>
+                </div>
+            </div>
+            <div class="col-2 col-md-3"></div>
+        </div>
+    </div>
+</main>
+@endsection

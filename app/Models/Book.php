@@ -15,7 +15,7 @@ class Book extends Model
 
     protected $fillable = [
         'name_id',
-        'age_limit_id',
+        'age_id',
         'annotation_id',
         'year_id',
         'house_id',
