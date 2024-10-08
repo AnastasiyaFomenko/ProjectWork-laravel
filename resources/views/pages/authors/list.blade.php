@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-Название литературы
+Авторы
 @endsection
 @section('content')
 <main>
@@ -13,24 +13,23 @@
             <div class="col-12 col-md-12">
             @if(Auth::user()->role_id == 2)
                 <div class="background-lilac-52">
-                    <h2>Книги</h2>
-                    <a href="{{ route('books.create')}}"><button>Добавить</button></a>
+                    <h2>Авторы</h2>
+                    <a href="{{ route('authors.create')}}"><button>Добавить</button></a>
                 </div>
                 @endif
                 <ul class="cards">
-                        
-                @foreach($books as $book)
+                @foreach($authors as $author)
                         <div class="padding-20">
                         <li>
-                            <a href="{{ route('books.show', ['book' => $book->id]) }}" class="card ">
-                                <img src="{{env('URL')}}{{$book->cover}}"
+                            <a href="{{ route('authors.show', ['author' => $author->id]) }}" class="card ">
+                                <img src="{{env('URL')}}{{$author->cover}}"
                                     class="card__image" alt="" />
                                 <div class="card__overlay">
                                     <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
                                         <path />
                                     </svg>
                                     <div class="card__description">
-                                        <div class="padding-top-10">{{ $book->name->name}}</div>
+                                        <div class="padding-top-10">{{ $author->name}}</div>
                                     </div>
                                 </div>
                             </a>

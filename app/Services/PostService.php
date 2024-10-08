@@ -32,8 +32,8 @@ class PostService
     public function upload($cover)
     {
         $coverName = $cover->hashName();
-        $coverPath = 'uploads/' . $coverName;
-        Storage::disk('s3')->put('/uploads/', $cover, 'public');
+        $coverPath = 'uploads/posts/' . $coverName;
+        Storage::disk('s3')->put('/uploads/posts/', $cover, 'public');
 
         return $coverPath;
     }

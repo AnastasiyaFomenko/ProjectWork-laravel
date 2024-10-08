@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('title')
-Предложить статью
+Название литературы
 @endsection
 @section('content')
 <main>
     <div class="margin-top-50"></div>
     <div class="container">
         <div class="row">
-            <h3 class="center">Предложить статью</h3>
+            <h3 class="center">Название литературы</h3>
         </div>
         <div class="row">
             <div class="col-2 col-md-3"></div>
@@ -22,23 +22,16 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('name_books.store') }}" method="post">
                         @csrf
                         <div>
                             <label for="name"><b>Название:</b></label><br>
                             <input type="text" placeholder="Название" name="name"
-                                class=" @error('name') is-invalid @enderror" id="name"><br>
-
-                            <label for="text"></label><b>Текcт:</b></label><br>
-                                <textarea id="text" name="text"></textarea><br>
-                            <label for="cover"><b>Фотография:</b></label><br>
-                            <input type="file" class="margin-top-20" name="cover"
-                                class=" @error('cover') is-invalid @enderror" id="cover"><br>
+                                class=" @error('name') is-invalid @enderror" id="name">
                             <input type="submit" value="Добавить" class="margin-top-20">
-                            <input type = "hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">
                         </div>
                     </form>
-                    <div class="right"><a href="{{ route('posts.index') }}">Назад</a></div>
+                    <div class="right"><a href="{{ route('name_books.index') }}">Назад</a></div>
                 </div>
             </div>
             <div class="col-2 col-md-3"></div>

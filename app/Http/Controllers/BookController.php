@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BookRequest;
 use App\Models\Book;
-use App\Repository\BookRepository;
+use App\Models\ReadCategory;
 use App\Services\BookService;
+use App\Http\Requests\BookRequest;
+use App\Repository\BookRepository;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateReadCategoryBookRequest;
 
 class BookController extends Controller
 {
@@ -40,7 +43,8 @@ class BookController extends Controller
         $bindingId = $request->binding_id;
         $typeId = $request->type_id;
         $ISBN = $request->ISBN;
-        $bookService->create($nameId, $ageLimitId, $annotationId, $yearId, $houseId, $languageId, $bindingId, $typeId, $ISBN);
+        $cover = $request->file('cover');
+        $bookService->create($nameId, $ageLimitId, $annotationId, $yearId, $houseId, $languageId, $bindingId, $typeId, $ISBN, $cover);
 
         return redirect()->route('books.index');
     }   
@@ -76,7 +80,8 @@ class BookController extends Controller
         $typeId = $request->type_id;
         $ISBN = $request->ISBN;
         $id = $book->id;
-        $bookService->update($nameId, $ageLimitId, $annotationId, $yearId, $houseId, $languageId, $bindingId, $typeId, $ISBN, $id);
+        $cover = $request->file('cover');
+        $bookService->update($nameId, $ageLimitId, $annotationId, $yearId, $houseId, $languageId, $bindingId, $typeId, $ISBN, $cover, $id);
         
         return redirect()->route('books.index');
     }
@@ -88,5 +93,38 @@ class BookController extends Controller
     {
         $bookService->delete($book->id);
         return redirect()->route('books.index');
+    }
+
+    public function read_category(UpdateReadCategoryBookRequest $request, BookService $bookService, Book $book) {
+
+        $userId = Auth::user()->id;
+        $bookId = $book->id;
+        $it_abandoned = $request->it_abandoned;
+        $it_read = $request->it_read;
+        $it_want_read = $request->it_want_read;
+        $it_now_read = $request->it_now_read;
+    
+        $bookService->update_read_category($userId, $bookId, $it_abandoned, $it_read, $it_want_read, $it_now_read);
+        return redirect()->route('books.show', compact('book'));
+    }
+
+    public function read_books(BookRepository $bookRepository) {
+        $books = $bookRepository->getReadBook();
+        return view('pages.read_category_books.read_books', compact('books'));
+    }
+
+    public function abandoned_books(BookRepository $bookRepository) {
+        $books = $bookRepository->getAbandonedBook();
+        return view('pages.read_category_books.abandoned_books', compact('books'));
+    }
+
+    public function now_read_books(BookRepository $bookRepository) {
+        $books = $bookRepository->getNowReadBook();
+        return view('pages.read_category_books.now_read_books', compact('books'));
+    }
+
+    public function want_read_books(BookRepository $bookRepository) {
+        $books = $bookRepository->getWantReadBook();
+        return view('pages.read_category_books.want_read_books', compact('books'));
     }
 }

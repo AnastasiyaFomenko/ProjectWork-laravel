@@ -15,16 +15,20 @@
 <!-- ссылки навигации по сайту  -->
 <div class="navbar-links one">
     <ul class="topmenu ul">
-    <li><a href="/about">О нас</a></li>
-        <li><a href="/name_books">Название литературы</a></li>
-        <li><a href="/posts">Посты</a></li>
+        <li><a href="/about">О нас</a></li>
         @if (Route::has('login'))
             @auth
+                @if(Auth::user()->role_id == 2)
+                    <li><a href="/name_books">Название литературы</a></li>
+                @endif
+                <li><a href="/posts">Посты</a></li>
+                <li><a href="/books">Книги</a></li>
+                <li><a href="/authors">Авторы</a></li>
                 <li><a href="{{ url('/dashboard') }}">Профиль</a></li>
             @else
-            <li><a href="{{ route('login') }}">Авторизация</a></li>
+                <li><a href="{{ route('login') }}">Авторизация</a></li>
                 @if (Route::has('register'))
-                <li><a href="{{ route('register') }}"> Регистрация</a></li>
+                    <li><a href="{{ route('register') }}"> Регистрация</a></li>
                 @endif
             @endauth
         @endif

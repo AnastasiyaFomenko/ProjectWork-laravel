@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 use App\Models\Post;
-use App\Models\User;
 
 
 class PostRepository

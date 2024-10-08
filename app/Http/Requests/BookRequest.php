@@ -31,7 +31,7 @@ class BookRequest extends FormRequest
             'binding_id' => ['required', 'integer'],
             'type_id' => ['required', 'integer'],
             'ISBN' => ['required', 'string'],
-
+            'cover' => ['file']
         ];
     }
 }

@@ -6,31 +6,31 @@
 <main>
     <div class="margin-top-50"></div>
     <div class="container">
-        <div class="row">
-            <h3 class="center">Предложить статью</h3>
-        </div>
-        <div class="row">
-            <div class="col-2 col-md-3"></div>
-            <div class="col-8 col-md-6 background-lilac-52">
-                <div class="center">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-
+        @if(Auth::user()->role_id == 2)
+            <div class="row">
+                <h3 class="center">Добавить книгу</h3>
+            </div>
+            <div class="row">
+                <div class="col-2 col-md-3"></div>
+                <div class="col-8 col-md-6 background-lilac-52">
+                    <div class="center">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <x-input-label for="name_id" :value="__('Id названия')" />
                             <x-text-input id="name_id" type="text" name="name_id" required autofocus />
                             <x-input-error :messages="$errors->get('name_id')" />
 
                             <x-input-label for="age_limit_id" :value="__('Id возрастного ограничения')" />
-                            <x-text-input id="age_limit_id" type="text" name="age_limit_id" required  />
+                            <x-text-input id="age_limit_id" type="text" name="age_limit_id" required />
                             <x-input-error :messages="$errors->get('age_limit_id')" />
 
                             <x-input-label for="annotation_id" :value="__('Id аннотация')" />
@@ -65,15 +65,25 @@
                             <x-text-input id="ISBN" type="text" name="ISBN" required />
                             <x-input-error :messages="$errors->get('ISBN')" />
 
+                            <x-input-label for="cover" :value="__('Обложка книги')" />
+                            <x-text-input id="cover" type="file" name="cover" />
+                            <x-input-error :messages="$errors->get('cover')" />
+
                             <x-primary-button>
                                 {{ __('Добавить книгу') }}
                             </x-primary-button>
-                    </form>
-                    <div class="right"><a href="{{ route('books.index') }}">Назад</a></div>
+                        </form>
+                        <div class="right"><a href="{{ route('books.index') }}">Назад</a></div>
+                    </div>
                 </div>
+                <div class="col-2 col-md-3"></div>
             </div>
-            <div class="col-2 col-md-3"></div>
-        </div>
+        @endif
+        @if(Auth::user()->role_id == 1)
+            <div class="background-lilac-52">
+                <h1><a href="{{ route('books.index')}}">Дорогой пользователь, вернитесь назад!</a></h1>
+            </div>
+        @endif
     </div>
 </main>
 @endsection
