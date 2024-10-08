@@ -8,21 +8,21 @@ Route::get('/', function () {
     return view('pages.index');
 })->name('index');
 
-Route::get('/register', function () {
-    return view('pages.register');
-});
-
-Route::get('/cabinet', function () {
-    return view('pages.about-reader');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/about', function () {
     return view('pages.about');
 });
 
-Route::resource('name_books', NameBookController::class);
-Route::resource('posts', PostController::class);
+Route::middleware('auth')->group(function () {
+    Route::resource('name_books', NameBookController::class);
+    Route::resource('posts', PostController::class);
 
-Route::group(['prefix' => '/posts/{post}/'], function () {
+    Route::group(['prefix' => '/posts/{post}/'], function () {
     Route::put('/update_status', [PostController::class, 'update_status'])->name('posts.update_status');
 });
+});
+
+require __DIR__.'/auth.php';
