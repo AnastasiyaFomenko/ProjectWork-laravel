@@ -1,7 +1,17 @@
 <?php
 
+use App\Http\Controllers\AgeLimitController;
+use App\Http\Controllers\AnnotationController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BindingController;
+use App\Http\Controllers\BookLanguageController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublishingHouseController;
+use App\Http\Controllers\PublishingYearController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\TranslatorController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PostController;
@@ -22,10 +32,20 @@ Route::get('/about', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('name_books', NameBookController::class);
+    Route::resource('age_limits', AgeLimitController::class);
+    Route::resource('annotations', AnnotationController::class);
+    Route::resource('bindings', BindingController::class);
+    Route::resource('book_languages', BookLanguageController::class);
+    Route::resource('genres', GenreController::class);
+    Route::resource('publishing_houses', PublishingHouseController::class);
+    Route::resource('publishing_years', PublishingYearController::class);
+    Route::resource('tags', TagController::class);
+    Route::resource('types', TypeController::class);
+
     Route::resource('posts', PostController::class);
     Route::resource('books', BookController::class);
     Route::resource('authors', AuthorController::class);
-
+    Route::resource('translators', TranslatorController::class);
 
     Route::resource('profile', ProfileController::class);
 

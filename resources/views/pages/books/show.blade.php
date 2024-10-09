@@ -62,10 +62,6 @@
                 </div>
                 <div class="col-4">
                     <a href="{{ route('books.edit', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
-                            обложку</button></a>
-                </div>
-                <div class="col-4">
-                    <a href="{{ route('books.edit', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
                             жанр</button></a>
                 </div>
             </div>

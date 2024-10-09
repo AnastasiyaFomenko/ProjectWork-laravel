@@ -71,7 +71,6 @@ class PostController extends Controller
         $id = $post->id;
         $postService->update($id, $name, $text, $cover);
         return redirect()->route('posts.index');
-
     }
 
     /**

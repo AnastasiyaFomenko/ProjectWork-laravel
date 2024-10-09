@@ -11,12 +11,12 @@ class AuthorService
     public function upload($cover)
     {
         $coverName = $cover->hashName();
-        $coverPath = 'uploads/users/' . $coverName;
+        $coverPath = 'uploads/authors/' . $coverName;
         Storage::disk('s3')->put('/uploads/authors/', $cover, 'public');
 
         return $coverPath;
     }
-    public function create(string $name, string $surname, string $patronymic, string $biography, $birth, string $place_birth, $cover)
+    public function create(string $name, $surname, $patronymic, $biography, $birth, $place_birth, $cover)
     {
         if ($cover) {
             $path = AuthorService::upload($cover);
@@ -43,7 +43,7 @@ class AuthorService
         }
     }
 
-    public function update(string $name, string $surname, string $patronymic, string $biography, $birth, string $place_birth, $cover, int $id)
+    public function update(string $name, $surname, $patronymic, $biography, $birth, $place_birth, $cover, int $id)
     {
         $updateAuthor = AuthorInformation::findOrFail($id)->update([
             'name' => $name,

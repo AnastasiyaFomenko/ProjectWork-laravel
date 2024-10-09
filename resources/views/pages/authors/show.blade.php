@@ -33,6 +33,24 @@
                 </div>
             </div>
         </div>
+        @if(Auth::user()->role_id == 2)
+            <div class="row margin-top-50">
+                <div class="col-4">
+                    <a href="{{ route('authors.edit', ['author' => $author->id]) }}"
+                        class="text-primary d-block"><button>Изменить</button></a>
+                </div>
+            </div>
+            <div class="row margin-top-20">
+                <div class="col-4">
+                <form action="{{ route('authors.destroy', ['author' => $author->id]) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Удалить"
+                                onclick="return confirm('Вы действительно хотите удалить запись?')">
+                        </form>
+                </div>
+            </div>
+        @endif
         <div class="row">
             <div class="col-12">
                 <div class="right"><a href="{{ route('authors.index') }}">Назад</a></div>

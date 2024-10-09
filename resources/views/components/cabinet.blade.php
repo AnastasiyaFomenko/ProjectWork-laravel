@@ -6,7 +6,7 @@
                 class="circle-image little-image">
         </div>
         <div class="col-4 col-md-9">
-            <p>Фамилия Имя</p>
+            <p>{{Auth::user()->name}} {{Auth::user()->surname}}</p>
         </div>
     </div>
 </div>

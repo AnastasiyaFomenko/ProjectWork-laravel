@@ -57,10 +57,6 @@ class Book extends Model
         return $this->belongsTo(Type::class);
     }
 
-    public function covers() : HasMany {
-        return $this->HasMany(BookCover::class);
-    }
-
     public function authors() : HasMany {
         return $this->HasMany(Author::class);
     }

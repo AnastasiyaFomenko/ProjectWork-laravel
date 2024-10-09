@@ -2,8 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\BookGenre;
+use App\Models\BookTag;
 use App\Models\ReadCategory;
+use App\Models\Translator;
 use Illuminate\Support\Facades\Storage;
 
 class BookService
@@ -105,5 +109,41 @@ class BookService
             ]);
             return $newCategory;
         }
+    }
+
+    public function addAuthor(int $bookId, int $authorId)
+    {
+        $authorBook = Author::create([
+            'book_id' => $bookId,
+            'author_id' => $authorId,
+        ]);
+        return $authorBook;
+    }
+
+    public function addTranslator(int $bookId, int $translatorId)
+    {
+        $translatorBook = Translator::create([
+            'book_id' => $bookId,
+            'translator_id' => $translatorId,
+        ]);
+        return $translatorBook;
+    }
+
+    public function addTag(int $bookId, int $tagId)
+    {
+        $tagBook = BookTag::create([
+            'book_id' => $bookId,
+            'tag_id' => $tagId,
+        ]);
+        return $tagBook;
+    }
+
+    public function addGenre(int $bookId, int $genreId)
+    {
+        $genreBook = BookGenre::create([
+            'book_id' => $bookId,
+            'genre_id' => $genreId,
+        ]);
+        return $genreBook;
     }
 }

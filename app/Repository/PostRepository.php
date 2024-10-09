@@ -21,4 +21,9 @@ class PostRepository
             'moderation_status_id' => $status_id
          ])->get();
     }
+
+    public function getAllPostUser(int $userId)
+    {
+        return Post::all()->where('user_id', '=', $userId);
+    }
 }

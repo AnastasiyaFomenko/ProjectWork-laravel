@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileService
 {
-
     public function upload($avatar)
     {
         $avatarName = $avatar->hashName();

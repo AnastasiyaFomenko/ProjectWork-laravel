@@ -11,7 +11,7 @@ class AuthorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class AuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => ['required', 'string'],
+            "surname" => ['nullable', 'string'],
+            "patronymic" => ['nullable','string'],
+            "biography" => ['nullable', 'string'],
+            "birth" => ['nullable', 'date'],
+            "place_birth" => ['nullable', 'string'],
+            "cover" => ['file']
         ];
     }
 }

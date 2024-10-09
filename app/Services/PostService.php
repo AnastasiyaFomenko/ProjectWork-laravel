@@ -52,4 +52,9 @@ class PostService
             ]);
         }
     }
+
+    public function delete(int $postId)
+    {
+        return Post::destroy($postId);
+    }
 }
