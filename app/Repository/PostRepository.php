@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 use App\Models\Post;
-use App\Models\User;
 
 
 class PostRepository
@@ -21,5 +20,10 @@ class PostRepository
         return Post::with('user')->where([
             'moderation_status_id' => $status_id
          ])->get();
+    }
+
+    public function getPostsUser(int $userId)
+    {
+        return Post::all()->where('user_id', '=', $userId);
     }
 }

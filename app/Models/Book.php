@@ -15,7 +15,7 @@ class Book extends Model
 
     protected $fillable = [
         'name_id',
-        'age_limit_id',
+        'age_id',
         'annotation_id',
         'year_id',
         'house_id',
@@ -55,10 +55,6 @@ class Book extends Model
 
     public function type() : BelongsTo {
         return $this->belongsTo(Type::class);
-    }
-
-    public function covers() : HasMany {
-        return $this->HasMany(BookCover::class);
     }
 
     public function authors() : HasMany {

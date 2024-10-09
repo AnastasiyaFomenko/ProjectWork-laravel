@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <main>
+    @auth
     <div class="margin-top-50"></div>
     <div class="container">
         <div class="row">
@@ -35,7 +36,7 @@
                             <input type="file" class="margin-top-20" name="cover"
                                 class=" @error('cover') is-invalid @enderror" id="cover"><br>
                             <input type="submit" value="Добавить" class="margin-top-20">
-                            <input type = "hidden" name="user_id" id="user_id" value="2">
+                            <input type = "hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">
                         </div>
                     </form>
                     <div class="right"><a href="{{ route('posts.index') }}">Назад</a></div>
@@ -44,5 +45,6 @@
             <div class="col-2 col-md-3"></div>
         </div>
     </div>
+    @endauth
 </main>
 @endsection
