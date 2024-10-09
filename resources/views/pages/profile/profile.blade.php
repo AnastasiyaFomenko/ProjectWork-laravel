@@ -37,11 +37,14 @@
                     class="text-primary d-block"><button>Изменить</button></a>
             </div>
         </div>
+        <div>
             <form action="{{ route('logout') }}" method="post">
                 @csrf
                 <x-primary-button>
                     {{ __('Выйти') }}
                 </x-primary-button>
+            </form>
+        </div>
     </div>
 </main>
 @endsection
