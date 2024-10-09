@@ -11,7 +11,7 @@ class ReviewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,8 +24,6 @@ class ReviewRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'text' => ['required', 'string'],
-            'book_id' => ['required', 'integer'],
-            'user_id' => ['required', 'integer'],
         ];
     }
 }

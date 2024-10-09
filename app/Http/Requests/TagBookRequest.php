@@ -23,7 +23,6 @@ class TagBookRequest extends FormRequest
     {
         return [
             'tag_id' => ['required', 'integer'],
-            'book_id' => ['required', 'integer'],
         ];
     }
 }

@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <main>
+    @auth
     <div class="margin-top-50"></div>
     <div class="container">
         <div class="row">
@@ -44,5 +45,6 @@
             <div class="col-2 col-md-3"></div>
         </div>
     </div>
+    @endauth
 </main>
 @endsection

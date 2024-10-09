@@ -3,13 +3,18 @@
 Посты
 @endsection
 @section('content')
-@auth
+<main>
+@include('components.cabinet')
+
     <div class="margin-top-50"></div>
     <div class="container">
         <div class="row">
-            <h3 class="center"></h3>
-        </div>
-        @if(Auth::user()->role_id == 2)
+            <h3 class="center">
+            <div class="col-12" >
+                    <a href="{{ route('posts.create')}}"><button>Добавить</button></a>
+                </div>
+            </h3>
+        </div><br><br>
         <div class="row">
             <div class="col-12 col-md-12">
                 <div class="background-lilac-52">
@@ -40,17 +45,11 @@
                 @endforeach
             </div>
         </div>
-        @endif
-        @endauth
         <div class="row margin-top-20">
             <div class="col-12 col-md-12">
-                @auth
-                @if(Auth::user()->role_id == 2)
                 <div class="background-lilac-52">
                     <h2>Опубликовано:</h2>
                 </div>
-                @endif
-                @endauth
                 @foreach($posts as $post)
                     @if ($post->moderation_status_id == '2')
                         <div class="padding-20">
@@ -76,8 +75,6 @@
                 @endforeach
             </div>
         </div>
-        @auth
-        @if(Auth::user()->role_id == 2)
         <div class="row margin-top-20">
             <div class="col-12 col-md-12">
                 <div class="background-lilac-52">
@@ -108,9 +105,6 @@
                 @endforeach
             </div>
         </div>
-        @endif
-        @endauth
     </div>
-    
 </main>
 @endsection

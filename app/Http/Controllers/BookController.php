@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthorBookRequest;
+use App\Http\Requests\GenreBookRequest;
+use App\Http\Requests\ReviewRequest;
+use App\Http\Requests\TagBookRequest;
+use App\Http\Requests\TranslatorBookRequest;
 use App\Models\Book;
 use App\Models\ReadCategory;
 use App\Services\BookService;
 use App\Http\Requests\BookRequest;
 use App\Repository\BookRepository;
+use App\Services\ReviewService;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateReadCategoryBookRequest;
 
@@ -109,22 +115,83 @@ class BookController extends Controller
     }
 
     public function read_books(BookRepository $bookRepository) {
-        $books = $bookRepository->getReadBook();
+        $userId = Auth::user()->id;
+        $books = $bookRepository->getReadBook($userId);
         return view('pages.read_category_books.read_books', compact('books'));
     }
 
     public function abandoned_books(BookRepository $bookRepository) {
-        $books = $bookRepository->getAbandonedBook();
+        $userId = Auth::user()->id;
+        $books = $bookRepository->getAbandonedBook($userId);
         return view('pages.read_category_books.abandoned_books', compact('books'));
     }
 
     public function now_read_books(BookRepository $bookRepository) {
-        $books = $bookRepository->getNowReadBook();
+        $userId = Auth::user()->id;
+        $books = $bookRepository->getNowReadBook($userId);
         return view('pages.read_category_books.now_read_books', compact('books'));
     }
 
     public function want_read_books(BookRepository $bookRepository) {
-        $books = $bookRepository->getWantReadBook();
+        $userId = Auth::user()->id;
+        $books = $bookRepository->getWantReadBook($userId);
         return view('pages.read_category_books.want_read_books', compact('books'));
+    }
+
+    public function add_author(Book $book) {
+        return view('pages.books.add_author', compact('book'));
+    }
+
+    public function store_author(AuthorBookRequest $request, BookService $bookService, Book $book) {
+        $author_id = $request->author_id;
+        $book_id = $book->id;
+        $bookService->addAuthor($book_id, $author_id);
+        return redirect()->route('books.index');
+    }
+
+    public function add_genre(Book $book) {
+        return view('pages.books.add_genre', compact('book'));
+    }
+
+    public function store_genre(GenreBookRequest $request, BookService $bookService, Book $book) {
+        $genre_id = $request->genre_id;
+        $book_id = $book->id;
+        $bookService->addGenre($book_id, $genre_id);
+        return redirect()->route('books.index');
+    }
+
+    public function add_tag(Book $book) {
+        return view('pages.books.add_tag', compact('book'));
+    }
+
+    public function store_tag(TagBookRequest $request, BookService $bookService, Book $book) {
+        $tag_id = $request->tag_id;
+        $book_id = $book->id;
+        $bookService->addTag($book_id , $tag_id);
+        return redirect()->route('books.index');
+    }
+
+    public function add_translator(Book $book) {
+        return view('pages.books.add_translator', compact('book'));
+    }
+
+    public function store_translator(TranslatorBookRequest $request, BookService $bookService, Book $book) {
+        $translator_id = $request->translator_id;
+        $book_id = $book->id;
+        $bookService->addTranslator($book_id, $translator_id);
+        return redirect()->route('books.index');
+    }
+
+    public function add_review(Book $book) {
+        return view('pages.books.add_review', compact('book'));
+    }
+
+    public function store_review(ReviewRequest $request, ReviewService $reviewService, Book $book) {
+        $name = $request->name;
+        $text = $request->text;
+        $userId = Auth::user()->id;
+        $book_id = $book->id;
+        $reviewService->create($name, $text, $userId, $book_id);
+        return redirect()->route('books.index');
     }
 }

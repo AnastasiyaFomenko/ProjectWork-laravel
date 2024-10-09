@@ -17,7 +17,7 @@
         <div class="col-12 col-md-2"><a href="{{ route('want_read_books')}}"> Хочу прочитать</a></div>
         <div class="col-12 col-md-1"><a href="{{ route('abandoned_books')}}"> Брошено</a></div>
         <div class="col-12 col-md-2"><a href="{{ route('now_read_books')}}"> Читаю сейчас</a></div>
-        <div class="col-12 col-md-2"><a href=""> Мои рецензии</a></div>
-        <div class="col-12 col-md-1"><a href=""> Мои статьи</a></div>
+        <div class="col-12 col-md-2"><a href="{{route('user_reviews')}}"> Мои рецензии</a></div>
+        <div class="col-12 col-md-1"><a href="{{route('user_posts')}}"> Мои статьи</a></div>
     </div>
 </div>

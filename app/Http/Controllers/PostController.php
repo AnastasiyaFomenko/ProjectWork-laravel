@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Services\PostService;
 use App\Repository\PostRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\UpdateStatusPostRequest;
 
 
@@ -85,5 +86,12 @@ class PostController extends Controller
 
         $postService->update_moderate_status($post->id, $request->moderation_status_id);
         return redirect()->route('posts.show', compact('post'));
+    }
+
+    public function user_posts(Post $post, PostRepository $postRepository) {
+
+        $user_id = Auth::user()->id;
+        $posts = $postRepository->getPostsUser($user_id);
+        return view('pages.posts.user_posts', compact('posts'));
     }
 }

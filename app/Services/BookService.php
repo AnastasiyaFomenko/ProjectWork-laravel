@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Storage;
 
 class BookService
 {
-    public function upload($cover)
+   public function upload($cover)
     {
         $coverName = $cover->hashName();
-        $coverPath = 'uploads/users/' . $coverName;
+        $coverPath = 'uploads/books/' . $coverName;
         Storage::disk('s3')->put('/uploads/books/', $cover, 'public');
 
         return $coverPath;
@@ -115,7 +115,7 @@ class BookService
     {
         $authorBook = Author::create([
             'book_id' => $bookId,
-            'author_id' => $authorId,
+            'information_author_id' => $authorId,
         ]);
         return $authorBook;
     }
@@ -124,7 +124,7 @@ class BookService
     {
         $translatorBook = Translator::create([
             'book_id' => $bookId,
-            'translator_id' => $translatorId,
+            'information_translator_id' => $translatorId,
         ]);
         return $translatorBook;
     }

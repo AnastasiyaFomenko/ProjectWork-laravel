@@ -40,6 +40,8 @@
             </div>
         </div>
 
+        @auth
+
         @if(Auth::user()->role_id == 2)
             <div class="row">
                 <div class="col-4">
@@ -47,21 +49,21 @@
                         class="text-primary d-block"><button>Изменить</button></a>
                 </div>
                 <div class="col-4">
-                    <a href="{{ route('books.edit', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
+                    <a href="{{ route('books.add_tag', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
                             теги</button></a>
                 </div>
                 <div class="col-4">
-                    <a href="{{ route('books.edit', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
+                    <a href="{{ route('books.add_author', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
                             автора</button></a>
                 </div>
             </div>
             <div class="row margin-top-20">
                 <div class="col-4">
-                    <a href="{{ route('books.edit', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
+                    <a href="{{ route('books.add_translator', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
                             переводчика</button></a>
                 </div>
                 <div class="col-4">
-                    <a href="{{ route('books.edit', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
+                    <a href="{{ route('books.add_genre', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
                             жанр</button></a>
                 </div>
             </div>
@@ -126,11 +128,12 @@
                     </form>
                 </div>
                 <div class="col-4">
-                    <a href="{{ route('books.edit', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
+                    <a href="{{ route('books.add_review', ['book' => $book->id]) }}" class="text-primary d-block"><button>Добавить
                             рецензию</button></a>
                 </div>
             </div>
         @endif
+        @endauth
         <div class="row">
             <div class="col-12">
                 <div class="right"><a href="{{ route('books.index') }}">Назад</a></div>

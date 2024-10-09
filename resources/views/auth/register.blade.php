@@ -40,7 +40,7 @@
                         <x-text-input id="password_confirmation" type="password" name="password_confirmation" required />
                         <x-input-error :messages="$errors->get('password_confirmation')" /><br>
 
-                        <x-text-input id="role_id" type="text" name="role_id" :value="__(2)" />
+                        <x-text-input id="role_id" type="hidden" name="role_id" :value="__(1)" />
 
                         <x-primary-button>
                             {{ __('Регистрация') }}

@@ -22,7 +22,7 @@ class PostRepository
          ])->get();
     }
 
-    public function getAllPostUser(int $userId)
+    public function getPostsUser(int $userId)
     {
         return Post::all()->where('user_id', '=', $userId);
     }

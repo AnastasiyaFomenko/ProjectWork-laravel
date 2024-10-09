@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Review;
-use Illuminate\Http\Request;
 use App\Services\ReviewService;
 use App\Http\Requests\ReviewRequest;
 use App\Repository\ReviewRepository;
@@ -16,7 +16,7 @@ class ReviewController extends Controller
      */
     public function index(ReviewRepository $reviewRepository)
     {
-        $reviews = $reviewRepository->getAllReview();
+        $reviews = $reviewRepository->getAllReviews();
         return view('pages.reviews.list', compact('reviews'));
     }
 
@@ -25,28 +25,23 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('pages.reviews.create');
+        abort(404, 'Page Not Found');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ReviewRequest $request, ReviewService $reviewService)
+    public function store()
     {
-        $name = $request->name;
-        $text = $request->text;
-        $user_id = Auth::user()->id;
-        $book_id = $request->book_id;
-        $reviewService->create($name, $text, $user_id, $book_id);
-
-        return redirect()->route('reviews.index');
+        abort(404, 'Page Not Found');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Review $review)
+    public function show(ReviewRepository $reviewRepository, Review $review)
     {
+        $review = $reviewRepository->getOneReview($review->id);
         return view('pages.reviews.show',compact('review'));
     }
 
@@ -81,5 +76,12 @@ class ReviewController extends Controller
         $reviewService->delete($review->id);
 
         return redirect()->route('reviews.index');
+    }
+
+    public function user_reviews(ReviewRepository $reviewRepository)
+    {
+        $user_id = Auth::user()->id;
+        $reviews = $reviewRepository->getUserReview($user_id);
+        return view('pages.reviews.user_reviews', compact('reviews'));
     }
 }

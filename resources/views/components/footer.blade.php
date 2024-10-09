@@ -6,7 +6,6 @@
         <div class="col-12 col-md-4">
             <div>
                 <ul class="topmenu">
-                    <li><a href="/register">Регистрация</a></li>
                     <li><a href="/cabinet">Личный кабинет</a></li>
                     <li><a href="/about">О нас</a></li>
                 </ul>
